@@ -1,30 +1,29 @@
 import React from 'react';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import {StyleSheet, Text, TouchableOpacity} from 'react-native';
 
-import {View, StyleSheet, Text, TouchableOpacity} from 'react-native';
-
-const AppButton = ({text, otherStyles, textStyle, icon, onPress}) => {
+const AppButton = ({
+  text,
+  otherStyles,
+  textStyle,
+  RightIcon,
+  onPress,
+  LeftIcon,
+}) => {
   return (
     <TouchableOpacity
       onPress={onPress}
       style={[styles.container, {...otherStyles}]}>
-      <View>
-        <Text style={textStyle}>{text} </Text>
-        {icon && (
-          <MaterialCommunityIcons
-            name={icon.name}
-            size={icon.size}
-            color={icon.color}
-          />
-        )}
-      </View>
+      {LeftIcon && <LeftIcon />}
+      <Text style={textStyle}>{text} </Text>
+      {RightIcon && <RightIcon />}
     </TouchableOpacity>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    justifyContent: 'center',
+    flexDirection: 'row',
+    justifyContent: 'space-around',
     alignItems: 'center',
     padding: 10,
     marginBottom: 20,

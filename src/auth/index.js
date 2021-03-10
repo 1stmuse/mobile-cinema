@@ -1,5 +1,5 @@
 import React from 'react';
-import {createStackNavigator} from '@react-navigation/stack';
+import {createStackNavigator, TransitionPresets} from '@react-navigation/stack';
 
 import AppScreen from '../components/AppScreen';
 import Welcome from '../views/Welcome';
@@ -12,6 +12,7 @@ const AuthStacks = () => {
       <Stack.Navigator
         screenOptions={{
           headerShown: false,
+          ...TransitionPresets.SlideFromRightIOS,
         }}>
         <Stack.Screen name="welcome" component={Welcome} />
         <Stack.Screen name="signin" component={SignIn} />

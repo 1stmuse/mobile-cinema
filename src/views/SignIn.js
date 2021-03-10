@@ -1,20 +1,23 @@
-/* eslint-disable no-unused-vars */
 /* eslint-disable react-native/no-inline-styles */
-import React from 'react';
+import React, {useState} from 'react';
 import {View, StyleSheet, Text, TextInput} from 'react-native';
 
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import Zocial from 'react-native-vector-icons/Zocial';
+import Feather from 'react-native-vector-icons/Feather';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import Colors from '../utils/Colors';
 import AppButton from '../components/AppButton';
 import Header from '../components/AuthHeader';
 
 const SignIn = ({navigation}) => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   return (
     <View style={styles.container}>
       <Header navigation={navigation} />
       <View style={styles.content}>
         <View>
-          <Text style={styles.logText}>Login in</Text>
+          <Text style={styles.logText}>Login</Text>
         </View>
         <View style={styles.inputWrapper}>
           <View style={styles.inputView}>
@@ -23,15 +26,20 @@ const SignIn = ({navigation}) => {
               keyboardType="email-address"
               placeholder="Enter E-mail"
               placeholderTextColor={Colors.white}
+              value={email}
+              onChangeText={(text) => setEmail(text)}
             />
           </View>
-          <View style={styles.inputView}>
+          <View style={[styles.inputView, styles.password]}>
             <TextInput
-              style={styles.input}
+              style={[styles.input, {width: '95%'}]}
               secureTextEntry
               placeholder="password"
               placeholderTextColor={Colors.white}
+              value={password}
+              onChangeText={(text) => setPassword(text)}
             />
+            <MaterialIcons name="visibility" size={10} color={Colors.white} />
           </View>
           <AppButton
             text="Sign in"
@@ -47,24 +55,28 @@ const SignIn = ({navigation}) => {
           <Text style={styles.or}>OR</Text>
           <View style={styles.social}>
             <AppButton
-              text="Sign in"
+              text="facebook"
               otherStyles={{
                 backgroundColor: Colors.white,
-                width: '40%',
+                width: '45%',
                 marginTop: 20,
               }}
-              textStyle={{color: 'grey', fontSize: 17, fontWeight: 'bold'}}
+              textStyle={{color: 'black', fontSize: 17, fontWeight: 'normal'}}
               onPress={() => navigation.navigate('signin')}
+              LeftIcon={() => (
+                <Feather name="facebook" size={20} color="blue" />
+              )}
             />
             <AppButton
-              text="Sign in"
+              text="google"
               otherStyles={{
                 backgroundColor: Colors.white,
                 width: '40%',
                 marginTop: 20,
               }}
-              textStyle={{color: 'grey', fontSize: 17, fontWeight: 'bold'}}
+              textStyle={{color: 'black', fontSize: 17, fontWeight: 'normal'}}
               onPress={() => navigation.navigate('signin')}
+              LeftIcon={() => <Zocial name="google" size={20} color="red" />}
             />
           </View>
         </View>
@@ -81,10 +93,13 @@ const styles = StyleSheet.create({
   content: {
     justifyContent: 'center',
     alignItems: 'center',
+    marginTop: '12%',
   },
   logText: {
     color: Colors.white,
-    fontSize: 20,
+    fontSize: 25,
+    marginBottom: 30,
+    fontWeight: 'bold',
   },
   inputWrapper: {
     backgroundColor: Colors.secondary,
@@ -93,7 +108,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     alignSelf: 'center',
     paddingVertical: 30,
-    borderRadius: 5,
+    borderRadius: 10,
   },
   inputView: {
     width: '90%',
@@ -104,6 +119,12 @@ const styles = StyleSheet.create({
   input: {
     padding: 0,
     color: Colors.white,
+  },
+  password: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    paddingBottom: 1,
   },
   or: {
     fontSize: 25,
