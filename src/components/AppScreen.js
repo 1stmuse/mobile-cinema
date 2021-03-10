@@ -1,18 +1,21 @@
 import React from 'react';
-import {View, StyleSheet, StatusBar} from 'react-native';
+import {StyleSheet, StatusBar, SafeAreaView} from 'react-native';
+
+import Colors from '../utils/Colors';
 
 const AppScreen = ({moreStyle, children}) => {
   return (
-    <View style={[styles.container, {...moreStyle}]}>
-      <StatusBar barStyle="dark-content" />
+    <SafeAreaView style={[styles.container, {...moreStyle}]}>
       {children}
-    </View>
+    </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: Colors.primary,
+    paddingTop: StatusBar.currentHeight,
   },
 });
 export default AppScreen;

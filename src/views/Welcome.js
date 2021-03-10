@@ -1,3 +1,4 @@
+/* eslint-disable react-native/no-inline-styles */
 import React from 'react';
 import {View, StyleSheet, Text} from 'react-native';
 
@@ -5,7 +6,7 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import Colors from '../utils/Colors';
 import AppButton from '../components/AppButton';
 
-const Welcome = () => {
+const Welcome = ({navigation}) => {
   return (
     <View style={styles.container}>
       <View>
@@ -26,6 +27,7 @@ const Welcome = () => {
           text="Sign in"
           otherStyles={{backgroundColor: Colors.yellow, width: '70%'}}
           textStyle={{color: Colors.white, fontSize: 17, fontWeight: 'bold'}}
+          onPress={() => navigation.navigate('signin')}
         />
         <AppButton
           text="Sign in"

@@ -3,9 +3,11 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 
 import {View, StyleSheet, Text, TouchableOpacity} from 'react-native';
 
-const AppButton = ({text, otherStyles, textStyle, icon}) => {
+const AppButton = ({text, otherStyles, textStyle, icon, onPress}) => {
   return (
-    <TouchableOpacity style={[styles.container, {...otherStyles}]}>
+    <TouchableOpacity
+      onPress={onPress}
+      style={[styles.container, {...otherStyles}]}>
       <View>
         <Text style={textStyle}>{text} </Text>
         {icon && (
@@ -26,7 +28,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     padding: 10,
     marginBottom: 20,
-    borderRadius:5
+    borderRadius: 5,
   },
 });
 export default AppButton;

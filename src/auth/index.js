@@ -1,34 +1,23 @@
 import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 
-import {StyleSheet} from 'react-native';
-
 import AppScreen from '../components/AppScreen';
 import Welcome from '../views/Welcome';
-import StackBackButton from '../components/StackBackButton';
-
+import SignIn from '../views/SignIn';
 const Stack = createStackNavigator();
 
 const AuthStacks = () => {
   return (
     <AppScreen>
-      <Stack.Navigator>
-        <Stack.Screen
-          name="welcome"
-          component={Welcome}
-          options={() => ({
-            headerShown: false,
-            // headerLeft: (props) => <StackBackButton />,
-          })}
-        />
+      <Stack.Navigator
+        screenOptions={{
+          headerShown: false,
+        }}>
+        <Stack.Screen name="welcome" component={Welcome} />
+        <Stack.Screen name="signin" component={SignIn} />
       </Stack.Navigator>
     </AppScreen>
   );
 };
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-});
 export default AuthStacks;
