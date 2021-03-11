@@ -30,9 +30,10 @@ const Welcome = ({navigation}) => {
           onPress={() => navigation.navigate('signin')}
         />
         <AppButton
-          text="Sign in"
+          text="Sign up"
           otherStyles={{width: '70%'}}
           textStyle={{color: Colors.yellow, fontSize: 17, fontWeight: 'bold'}}
+          onPress={() => navigation.navigate('register')}
         />
       </View>
     </View>

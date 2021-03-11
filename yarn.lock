@@ -5804,6 +5804,11 @@ realpath-native@^2.0.0:
   resolved "https://registry.yarnpkg.com/realpath-native/-/realpath-native-2.0.0.tgz#7377ac429b6e1fd599dc38d08ed942d0d7beb866"
   integrity sha512-v1SEYUOXXdbBZK8ZuNgO4TBjamPsiSgcFr0aP+tEKpQZK8vooEUqV6nm6Cv502mX4NF2EfsnVqtNAHG+/6Ur1Q==
 
+reanimated-bottom-tabs@^1.0.4:
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/reanimated-bottom-tabs/-/reanimated-bottom-tabs-1.0.4.tgz#aff9f0c06088ae290acc9cb6b5b2c3048f94c331"
+  integrity sha512-vSrJgyBAw/8aMJpCJiNt90+Hz3iUsPtEJGyt0RGIs+BwzxYAnCFekH06d+fCTHmOYPuKW6NRpUY+PoCff5Hkpw==
+
 regenerate-unicode-properties@^8.2.0:
   version "8.2.0"
   resolved "https://registry.yarnpkg.com/regenerate-unicode-properties/-/regenerate-unicode-properties-8.2.0.tgz#e5de7111d655e7ba60c057dbe9ff37c87e65cdec"

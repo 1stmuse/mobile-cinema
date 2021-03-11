@@ -8,23 +8,22 @@ import {
   TouchableWithoutFeedback,
 } from 'react-native';
 
-import Zocial from 'react-native-vector-icons/Zocial';
-import Feather from 'react-native-vector-icons/Feather';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import Colors from '../utils/Colors';
 import AppButton from '../components/AppButton';
 import Header from '../components/AuthHeader';
 
-const SignIn = ({navigation}) => {
+const Register = ({navigation}) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [rePass, setRePass] = useState('');
   const [showPass, setShowPass] = useState(true);
   return (
     <View style={styles.container}>
       <Header navigation={navigation} />
       <View style={styles.content}>
         <View>
-          <Text style={styles.logText}>Login</Text>
+          <Text style={styles.logText}>Sign up</Text>
         </View>
         <View style={styles.inputWrapper}>
           <View style={styles.inputView}>
@@ -50,8 +49,21 @@ const SignIn = ({navigation}) => {
               <MaterialIcons name="visibility" size={10} color={Colors.white} />
             </TouchableWithoutFeedback>
           </View>
+          <View style={[styles.inputView, styles.password]}>
+            <TextInput
+              style={[styles.input, {width: '95%'}]}
+              secureTextEntry
+              placeholder="Repeat Password"
+              placeholderTextColor={Colors.white}
+              value={rePass}
+              onChangeText={(text) => setRePass(text)}
+            />
+            {/* <TouchableWithoutFeedback onPress={() => setShowPass(!showPass)}>
+              <MaterialIcons name="visibility" size={10} color={Colors.white} />
+            </TouchableWithoutFeedback> */}
+          </View>
           <AppButton
-            text="Sign in"
+            text="Sign up"
             otherStyles={{
               backgroundColor: Colors.yellow,
               width: '90%',
@@ -60,34 +72,15 @@ const SignIn = ({navigation}) => {
             textStyle={{color: Colors.white, fontSize: 17, fontWeight: 'bold'}}
             onPress={() => navigation.navigate('signin')}
           />
-          <Text style={{color: Colors.white}}>Recover Password</Text>
-          <Text style={styles.or}>OR</Text>
-          <View style={styles.social}>
-            <AppButton
-              text="facebook"
-              otherStyles={{
-                backgroundColor: Colors.white,
-                width: '45%',
-                marginTop: 20,
-              }}
-              textStyle={{color: 'black', fontSize: 17, fontWeight: 'normal'}}
-              onPress={() => navigation.navigate('signin')}
-              LeftIcon={() => (
-                <Feather name="facebook" size={20} color="blue" />
-              )}
-            />
-            <AppButton
-              text="google"
-              otherStyles={{
-                backgroundColor: Colors.white,
-                width: '40%',
-                marginTop: 20,
-              }}
-              textStyle={{color: 'black', fontSize: 17, fontWeight: 'normal'}}
-              onPress={() => navigation.navigate('signin')}
-              LeftIcon={() => <Zocial name="google" size={20} color="red" />}
-            />
-          </View>
+          <TouchableWithoutFeedback
+            onPress={() => navigation.navigate('signin')}>
+            <View style={styles.exist}>
+              <Text style={{color: Colors.white}}>
+                Already have an account ?
+              </Text>
+              <Text style={styles.signIn}>sign in</Text>
+            </View>
+          </TouchableWithoutFeedback>
         </View>
       </View>
     </View>
@@ -135,16 +128,16 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     paddingBottom: 1,
   },
-  or: {
-    fontSize: 25,
+  signIn: {
+    fontSize: 18,
     fontWeight: 'bold',
-    marginTop: 20,
     color: Colors.white,
+    marginLeft: 4,
   },
-  social: {
+  exist: {
     flexDirection: 'row',
-    width: '90%',
-    justifyContent: 'space-around',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });
-export default SignIn;
+export default Register;
