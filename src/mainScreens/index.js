@@ -1,5 +1,5 @@
 import React from 'react';
-import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import {AnimatedTabBarNavigator} from 'react-native-animated-nav-tab-bar';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import Feather from 'react-native-vector-icons/Feather';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
@@ -10,29 +10,33 @@ import WatchStack from './stacks/WatchStack';
 import ProfileStack from './stacks/ProfileStack';
 import Colors from '../utils/Colors';
 
-const Tab = createBottomTabNavigator();
+const Tab = AnimatedTabBarNavigator();
 
 const MainScreens = () => {
   return (
     <Tab.Navigator
+      appearance={{
+        topPadding: 20,
+        tabBarBackground: Colors.secondary,
+        whenActiveShow: 'icon-only',
+        activeTabBackgrounds: Colors.primary,
+        activeColors: Colors.white,
+        dotSize: 'small',
+      }}
       tabBarOptions={{
         showLabel: false,
-        activeTintColor: Colors.white,
-        style: {
-          height: 70,
-          backgroundColor: Colors.secondary,
-          borderTopWidth: 0,
-          borderTopLeftRadius: 20,
-          borderTopRightRadius: 20,
-          marginTop: -40,
-        },
       }}>
       <Tab.Screen
         name="homeStack"
         children={HomeStack}
         options={{
-          tabBarIcon: ({color, size}) => (
-            <MaterialCommunityIcons name="home" color={color} size={size} />
+          tabBarIcon: ({color, size, focused}) => (
+            <MaterialCommunityIcons
+              name="home"
+              color={color}
+              size={size ? size : 24}
+              focused={focused}
+            />
           ),
         }}
       />
@@ -40,9 +44,13 @@ const MainScreens = () => {
         name="watchStack"
         children={WatchStack}
         options={{
-          tabBarLabel: 'Home',
-          tabBarIcon: ({color, size}) => (
-            <Feather name="video" color={color} size={size} />
+          tabBarIcon: ({color, size, focused}) => (
+            <Feather
+              name="video"
+              color={color}
+              size={size ? size : 24}
+              focused={focused}
+            />
           ),
         }}
       />
@@ -50,9 +58,13 @@ const MainScreens = () => {
         name="searchStack"
         children={SearchStack}
         options={{
-          tabBarLabel: 'Home',
-          tabBarIcon: ({color, size}) => (
-            <Feather name="search" color={color} size={size} />
+          tabBarIcon: ({color, size, focused}) => (
+            <Feather
+              name="search"
+              color={color}
+              size={size ? size : 24}
+              focused={focused}
+            />
           ),
         }}
       />
@@ -60,9 +72,13 @@ const MainScreens = () => {
         name="profileStack"
         children={ProfileStack}
         options={{
-          tabBarLabel: 'Home',
-          tabBarIcon: ({color, size}) => (
-            <FontAwesome name="user-o" color={color} size={size} />
+          tabBarIcon: ({color, size, focused}) => (
+            <FontAwesome
+              name="user-o"
+              color={color}
+              size={size ? size : 24}
+              focused={focused}
+            />
           ),
         }}
       />

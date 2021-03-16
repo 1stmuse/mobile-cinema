@@ -12,8 +12,8 @@ const App = () => {
     <>
       <StatusBar barStyle="default" backgroundColor={Colors.primary} />
       <NavigationContainer>
-        <AuthStacks />
-        {/* <MainScreens /> */}
+        {/* <AuthStacks /> */}
+        <MainScreens />
       </NavigationContainer>
     </>
   );
