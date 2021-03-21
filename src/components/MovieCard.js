@@ -19,17 +19,22 @@ const MovieCard = ({item}) => {
       <View style={styles.container}>
         <View style={styles.imageView}>
           <Image
-            source={require('../assets/images/bw.jpg')}
+            source={{
+              uri: `https://image.tmdb.org/t/p/original/${item.poster_path}`,
+            }}
             resizeMode="cover"
             style={{
               width: '100%',
               height: '100%',
-              borderRadius: 15,
+              borderRadius: 10,
             }}
           />
         </View>
         <View style={styles.textView}>
-          <Text style={styles.movieTitle}>Black widw</Text>
+          <Text style={styles.movieTitle} numberOfLines={1}>
+            {' '}
+            {item.title}{' '}
+          </Text>
           <Text style={styles.access}>Free</Text>
         </View>
       </View>
@@ -46,6 +51,7 @@ const styles = StyleSheet.create({
   },
   imageView: {
     height: '80%',
+    marginBottom: 5,
   },
   textView: {
     flex: 1,

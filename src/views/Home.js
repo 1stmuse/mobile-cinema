@@ -12,35 +12,41 @@ import {
 const data = new Array(5).fill({name: 'john'});
 
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import {useFetchMovie} from '../apis/fetchMovies';
 import AppScreen from '../components/AppScreen';
 import MovieCard from '../components/MovieCard';
 import TrailerCard from '../components/TrailerCard';
 import Colors from '../utils/Colors';
 
 const Home = ({navigation}) => {
+  const comedyMovies = useFetchMovie('comedy');
+  const cinemaMovies = useFetchMovie('cinema');
+  const interestingMovies = useFetchMovie('interesting');
+  const popularMovies = useFetchMovie('popular');
+
   return (
     <AppScreen>
       <View style={styles.container}>
-        <View style={styles.header}>
-          <TouchableWithoutFeedback>
-            <View style={{marginRight: 20}}>
+        <ScrollView>
+          <View style={styles.header}>
+            <TouchableWithoutFeedback>
+              <View style={{marginRight: 20}}>
+                <Ionicons
+                  name="notifications-outline"
+                  size={30}
+                  color={Colors.white}
+                />
+              </View>
+            </TouchableWithoutFeedback>
+            <TouchableWithoutFeedback
+              onPress={() => navigation.navigate('profileStack')}>
               <Ionicons
-                name="notifications-outline"
-                size={30}
+                name="person-circle-outline"
+                size={35}
                 color={Colors.white}
               />
-            </View>
-          </TouchableWithoutFeedback>
-          <TouchableWithoutFeedback
-            onPress={() => navigation.navigate('profile')}>
-            <Ionicons
-              name="person-circle-outline"
-              size={35}
-              color={Colors.white}
-            />
-          </TouchableWithoutFeedback>
-        </View>
-        <ScrollView>
+            </TouchableWithoutFeedback>
+          </View>
           <View style={styles.trailer}>
             <View style={styles.capHeading}>
               <Text style={styles.trailerCap}>Trailers</Text>
@@ -51,7 +57,9 @@ const Home = ({navigation}) => {
                 showsHorizontalScrollIndicator={false}
                 data={data}
                 keyExtractor={(item, i) => i.toString()}
-                renderItem={({item}) => <TrailerCard item={item} />}
+                renderItem={({item}) => (
+                  <TrailerCard item={item} icon="false" />
+                )}
               />
             </View>
           </View>
@@ -63,7 +71,7 @@ const Home = ({navigation}) => {
               <FlatList
                 horizontal
                 showsHorizontalScrollIndicator={false}
-                data={data}
+                data={cinemaMovies}
                 keyExtractor={(item, i) => i.toString()}
                 renderItem={({item}) => <MovieCard item={item} />}
               />
@@ -71,13 +79,46 @@ const Home = ({navigation}) => {
           </View>
           <View style={styles.popular}>
             <View style={styles.capHeading}>
-              <Text style={styles.trailerCap}>Now at the cinema</Text>
+              <Text style={styles.trailerCap}>The most interesting</Text>
             </View>
             <View>
               <FlatList
                 horizontal
                 showsHorizontalScrollIndicator={false}
-                data={data}
+                data={interestingMovies}
+                keyExtractor={(item, i) => i.toString()}
+                renderItem={({item}) => (
+                  <TrailerCard
+                    item={item}
+                    text="Plunged into the world of fiction"
+                  />
+                )}
+              />
+            </View>
+          </View>
+          <View style={styles.popular}>
+            <View style={styles.capHeading}>
+              <Text style={styles.trailerCap}>Popular</Text>
+            </View>
+            <View>
+              <FlatList
+                horizontal
+                showsHorizontalScrollIndicator={false}
+                data={popularMovies}
+                keyExtractor={(item, i) => i.toString()}
+                renderItem={({item}) => <MovieCard item={item} />}
+              />
+            </View>
+          </View>
+          <View style={styles.popular}>
+            <View style={styles.capHeading}>
+              <Text style={styles.trailerCap}>Comedies</Text>
+            </View>
+            <View>
+              <FlatList
+                horizontal
+                showsHorizontalScrollIndicator={false}
+                data={comedyMovies}
                 keyExtractor={(item, i) => i.toString()}
                 renderItem={({item}) => <MovieCard item={item} />}
               />
@@ -101,14 +142,14 @@ const styles = StyleSheet.create({
   },
   capHeading: {
     paddingLeft: 5,
-    marginBottom: 5,
+    marginBottom: 10,
   },
   trailerCap: {
     color: Colors.white,
     fontSize: 20,
   },
   popular: {
-    marginTop: 12,
+    marginTop: 20,
   },
 });
 export default Home;

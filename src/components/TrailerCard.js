@@ -13,11 +13,15 @@ import Colors from '../utils/Colors';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 const {width, height} = Dimensions.get('window');
 
-const TrailerCard = ({item}) => {
+const TrailerCard = ({item, icon}) => {
   return (
     <TouchableOpacity activeOpacity={0.4}>
       <ImageBackground
-        source={require('../assets/images/bw.jpg')}
+        source={
+          item.poster_path
+            ? {uri: `https://image.tmdb.org/t/p/original/${item.poster_path}`}
+            : require('../assets/images/bw.jpg')
+        }
         style={styles.container}
         resizeMode="stretch"
         imageStyle={{
@@ -25,10 +29,17 @@ const TrailerCard = ({item}) => {
           width: '100%',
           height: '100%',
         }}>
-        <View style={styles.play}>
-          <FontAwesome5 name="play" size={25} color={Colors.white} />
-        </View>
+        {icon && (
+          <View style={styles.play}>
+            <FontAwesome5 name="play" size={25} color={Colors.white} />
+          </View>
+        )}
       </ImageBackground>
+      {item.title && (
+        <View>
+          <Text style={styles.text}> {item.title} </Text>
+        </View>
+      )}
     </TouchableOpacity>
   );
 };
@@ -36,8 +47,8 @@ const TrailerCard = ({item}) => {
 const styles = StyleSheet.create({
   container: {
     width: width * 0.7,
-    height: 180,
-    borderRadius: 20,
+    height: height * 0.2,
+    borderRadius: 10,
     marginHorizontal: 10,
     overflow: 'hidden',
     justifyContent: 'center',
@@ -50,6 +61,11 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(192,192,192, 0.6)',
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  text: {
+    color: Colors.white,
+    marginLeft: 10,
+    marginTop:8
   },
 });
 export default TrailerCard;
