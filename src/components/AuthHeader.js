@@ -30,9 +30,9 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
   },
   back: {
-    width: 50,
-    height: 50,
-    borderRadius: 50 / 2,
+    width: 40,
+    height: 40,
+    borderRadius: 40 / 2,
     backgroundColor: Colors.secondary,
     alignItems: 'center',
     justifyContent: 'center',
