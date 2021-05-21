@@ -24,6 +24,8 @@ const Home = ({navigation}) => {
   const interestingMovies = useFetchMovie('interesting');
   const popularMovies = useFetchMovie('popular');
 
+  // console.log(comedyMovies[0])
+
   return (
     <AppScreen>
       <View style={styles.container}>

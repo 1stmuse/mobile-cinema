@@ -45,12 +45,12 @@ const MovieCard = ({item}) => {
 const styles = StyleSheet.create({
   container: {
     width: width * 0.38,
-    height: 250,
+    height: height / 2 -10,
     flex: 1,
     marginHorizontal: 10,
   },
   imageView: {
-    height: '80%',
+    height: height / 2 - 100,
     marginBottom: 5,
   },
   textView: {
