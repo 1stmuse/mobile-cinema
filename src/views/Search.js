@@ -27,9 +27,9 @@ const Search = () => {
   };
 
   const getMovies = async () =>{
-    if(searchTerm === "") {
-      return setMovies([])
-    }
+    // if(searchTerm === "") {
+    //   return setMovies([])
+    // }
     try {
       const {data} = await axios.get(`${DB_URL}/search/movie?api_key=${DB_KEY}&query=${searchTerm}`)
       const {results} = data;
@@ -40,6 +40,9 @@ const Search = () => {
   }
 
   useEffect(() =>{
+    if(searchTerm === "") {
+      return setMovies([])
+    }
     getMovies()
   } , [searchTerm])
 
@@ -99,7 +102,7 @@ const styles = StyleSheet.create({
     width:"100%",
     backgroundColor: Colors.secondary,
     paddingHorizontal: 20,
-    // marginBottom: 20,
+    marginBottom: -5,
     borderRadius: 5,
   },
   input: {
@@ -116,6 +119,7 @@ const styles = StyleSheet.create({
     backgroundColor: "grey",
     width: "100%",
     paddingVertical: 20,
+    borderRadius: 5,
     paddingHorizontal: 20,
     marginBottom: 70,
     // height: 200,
